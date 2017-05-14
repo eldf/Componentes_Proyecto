@@ -1,0 +1,81 @@
+delta dAdminLlamadaAdicionar {
+
+	modifies org.pl.emergencia.fop.AdminLlamada {
+
+		adds public LLamada agregar(String identificacion,
+								String nombre,
+								String apellido,
+								String idLLamada,
+								Boolean estado,
+								String domtipollamada,
+								String plantatelefonica,
+								String emergencia				
+		) {
+			
+			Persona persona = new Persona();
+			LLamada llamada = new LLamada();
+			persona.setIdentificacion(identificacion);
+			persona.setNombre(nombre);
+			persona.setApellido(apellido);
+			llamada.setIdLLamada(idLLamada);
+			llamada.setEstado(estado);
+			llamada.setCoddomtipollamada(domtipollamada); 
+			llamada.setIdplantatelefonica(plantatelefonica);
+			llamada.setIdLLamada(emergencia);
+			llamada.setPersona(persona);
+			return llamada;
+		}
+	}
+	modifies org.pl.emergencia.dto.LLamadaDAO {
+		adds public void agregar(LLamada llamada) {
+			try {
+				conn = dbConnection.getConnection();
+				String query = "INSERT INTO llamadas(Estado,TipoLLamada,NroTelefonico,idEmergencia,idPersona) values (?,?,?,?,?)";
+				ps = conn.prepareStatement(query);
+				ps.setBoolean(1, llamada.getEstado());
+				ps.setString(2, llamada.getCoddomtipollamada());
+				ps.setString(3, llamada.getIdplantatelefonica());
+				ps.setString(4, llamada.getIdEmergencia());
+				ps.setString(5, llamada.getPersona().identificacion);
+				ps.executeUpdate();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					conn.close();
+
+				}
+				catch(Exception e) { /* ignored*/
+				}
+			}
+		}
+	}
+	
+	modifies org.pl.emergencia.dto.PersonaDAO {
+		adds public void agregar(Persona persona) {
+			try {
+				conn = dbConnection.getConnection();
+				String query = "INSERT INTO persona (identificacion,nombre,apellido) values (?,?,?)";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, persona.getIdentificacion());
+				ps.setString(2, persona.getNombre());
+				ps.setString(3, persona.getApellido());
+				ps.executeUpdate();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					conn.close();
+
+				}
+				catch(Exception e) { /* ignored*/
+				}
+			}
+		}
+	}
+	
+}

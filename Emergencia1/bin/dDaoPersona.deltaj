@@ -1,0 +1,19 @@
+delta dDaoPersona {
+	adds {
+		package org.pl.emergencia.dto;
+
+		import java.sql.Connection;
+		import java.sql.PreparedStatement;
+		import java.sql.ResultSet;
+		import java.sql.Statement;
+		import org.pl.emergencia.bd.DBConnection;
+
+		public class PersonaDAO {
+			Statement st = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			Connection conn = null;
+			DBConnection dbConnection = null;
+		}
+	}
+}

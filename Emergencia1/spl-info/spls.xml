@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spls xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../bin/spls.xsd">
+	<spl name="Emergencia1">
+		<features>
+			<feature name ="AdminLlamada" />
+			<feature name ="AdminLlamadaAdicionar" />
+			<feature name ="AdminLlamadaConsultar" />
+			<feature name ="AdminLlamadaActualizar" />
+			<feature name ="AdminLlamadaValidarRegistro" />
+			<feature name ="Llamada" />
+			<feature name ="Persona" />
+			<feature name ="DaoLlamada" />
+			<feature name ="DaoPersona" />
+			<feature name ="Conexion" />
+			<feature name ="Config" />
+		</features>
+		<configurations>
+		</configurations>
+		<deltas>
+			<partition>
+				<modul delta="dAdminLlamada" when="AdminLlamada
+				" />
+			</partition>
+			<partition>
+				<modul delta="dLlamada" when="Llamada
+				" />
+			</partition>
+			<partition>
+				<modul delta="dPersona" when="Persona
+				" />
+			</partition>
+			<partition>
+				<modul delta="dDaoLlamada" when="DaoLlamada
+				" />
+				<modul delta="dConexion" when="DaoLlamada
+				" />
+			</partition>
+			<partition>
+				<modul delta="dDaoPersona" when="DaoPersona
+				" />
+			</partition>
+			<partition>
+				<modul delta="dDaoPersona" when="DaoPersona
+				" />
+			</partition>
+			<partition>
+				<modul delta="dAdminLlamada" when="AdminLlamadaAdicionar
+				" />
+				<modul delta="dDaoPersona" when="AdminLlamadaAdicionar
+				" />
+				<modul delta="dDaoLlamada" when="AdminLlamadaAdicionar
+				" />
+				<modul delta="dAdminLlamadaAdicionar" when="AdminLlamadaAdicionar
+				" />
+			</partition>
+			<partition>
+				<modul delta="dConexion" when="Conexion
+				" />
+			</partition>
+			<partition>
+				<modul delta="dConfig" when="Config
+				" />
+			</partition>
+		</deltas>
+	</spl>
+</spls>

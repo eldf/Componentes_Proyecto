@@ -1,0 +1,19 @@
+delta dAdminLlamada {
+adds{
+	package org.pl.emergencia.fop;
+	import org.pl.emergencia.dto.LLamada;
+	import org.pl.emergencia.dto.LLamadaDAO;
+	import org.pl.emergencia.dto.Persona;
+	import org.pl.emergencia.dto.PersonaDAO;
+	
+	public class AdminLlamada{
+		LLamadaDAO llamadaDAO = new LLamadaDAO();
+		LLamada llamada = new LLamada();
+		
+		PersonaDAO personaDAO = new PersonaDAO();
+		Persona persona = new Persona();
+		
+		}
+	}
+
+}

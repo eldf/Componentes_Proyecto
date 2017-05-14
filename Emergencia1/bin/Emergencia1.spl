@@ -1,0 +1,34 @@
+SPL Emergencia1 {
+
+	Features = {AdminLlamada, AdminLlamadaAdicionar, AdminLlamadaConsultar, AdminLlamadaActualizar, AdminLlamadaValidarRegistro, Llamada, Persona, DaoLlamada, DaoPersona, Conexion, Config}
+	Deltas = {dAdminLlamada, dAdminLlamadaAdicionar, dAdminLlamadaConsultar, dAdminLlamadaActualizar, dAdminLlamadaValidarRegistro, dLlamada, dPersona, dDaoLlamada, dDaoPersona, dConexion, dConfig}
+	Constraints {
+		// Put boolean expression representation of the feature model here. 
+	}
+	Partitions {
+		// Put mapping between deltas and feature configurations here. 
+		{dAdminLlamada} when (AdminLlamada);
+		{dLlamada} when (Llamada);
+		{dPersona} when (Persona);
+		{dDaoLlamada,dConexion} when (DaoLlamada);
+		{dDaoPersona} when (DaoPersona);
+		{dDaoPersona} when (DaoPersona);
+		{dAdminLlamada,dDaoPersona,dDaoLlamada,dAdminLlamadaAdicionar} 
+		 when (AdminLlamadaAdicionar);
+
+		
+		
+		
+		{dConexion} when (Conexion);
+		{dConfig} when (Config);
+		
+	}
+
+	Products {
+		// Put product definitions here. 
+		EmergenciaV1 = {AdminLlamada,Llamada,Persona,Conexion,DaoLlamada,DaoPersona};
+	    EmergenciaV2 = {AdminLlamada,Llamada,Persona,Conexion,DaoLlamada,DaoPersona,AdminLlamadaAdicionar};
+		
+
+	}
+}

@@ -1,0 +1,70 @@
+delta dAdminLlamadaConsultar {
+	modifies org.pl.emergencia.fop.AdminLlamada {
+
+		adds public void consultar(
+								PlantaTelefonica plantatelefonica
+												
+		) {
+			Persona persona = new Persona();
+			LLamada llamada = new LLamada();
+		    llamada.setPlantatelefonica(plantatelefonica);
+		}
+	}
+	modifies org.pl.emergencia.dto.LLamadaDAO {
+		adds public LLamada consultar(LLamada llamada, Persona persona ) {
+			try {
+				conn = Conexion.getConexion();
+				String query = "SELECT Estado,TipoLLamada,NroTelefonico,idEmergencia,idPersona from llamada where Pk_Id=?";
+				ps = conn.prepareStatement(query);
+				ps.setInt(1, llamada.getIdLLamada());
+				rs = ps.executeQuery();
+				if (rs.next()) {	
+			          llamada.setEstado(rs.getBoolean("Estado")); 
+			          persona.setIdentificacion(rs.getString("idPersona"));
+			          llamada.setPersona(persona);
+				}
+				
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					conn.close();
+
+				}
+				catch(Exception e) { /* ignored*/
+				}
+			}
+			
+			return llamada;
+		}
+	}
+	
+	modifies org.pl.emergencia.dto.PersonaDAO {
+		adds public Persona consultar(Persona persona) {
+			try {
+				conn = Conexion.getConexion();
+				String query = "SELECT nombre,apellido FROM persona WHERE identificacion=?";
+				 ps = conn.prepareStatement(query);
+				 ps.setString(1, persona.getIdentificacion());
+				  rs = ps.executeQuery();
+				  if (rs.next()) {
+				  	persona.setNombre(rs.getString("nombre"));
+				  	persona.setApellido(rs.getString("apellido"));
+				  }
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					conn.close();
+				}
+				catch(Exception e) { /* ignored*/
+				}
+			}
+			return persona;
+		}
+	}
+}
