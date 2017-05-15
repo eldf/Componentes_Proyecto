@@ -1,0 +1,30 @@
+delta dEliminarTipoEmergencia {
+	modifies org.pl.eshopping.fop.AdminEmergencia {
+		adds public void eliminar(Integer id) {
+			Emergencia c = new Emergencia();
+			c.setId(id);
+			emerDao.eliminar(c);
+		}
+	}
+	modifies org.pl.eshopping.dto.EmergenciaDAO {
+		adds public void eliminar(Emergencia c) {
+			try {
+				conn = Conexion.getConexion();
+				String query = "DELETE FROM Emergencia WHERE id=?";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, c.getId().toString());
+				ps.executeUpdate();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					conn.close();
+				}
+				catch(Exception e) { /* ignored*/}
+			}
+		}
+	}
+
+}

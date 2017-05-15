@@ -1,0 +1,14 @@
+delta dConfig {
+	adds {
+		package org.pl.emergencias.general;
+
+		public class Config {
+			public static final String SERVIDOR = "50.28.15.147";
+			public static final int PUERTO = 3306;
+			public static final String BD = "balancoo_emergencias";
+			public static final String NOMBRE_USUARIO = "balancoo_eafit";
+			public static final String CONTRASENA_USUARIO = "e4f1t207";
+		}
+	}
+
+}

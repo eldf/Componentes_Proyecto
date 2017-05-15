@@ -14,10 +14,12 @@ public class Test {
 		AdminLlamada admin = new  AdminLlamada();
 		LLamadaDAO llamadadao = new  LLamadaDAO();
 		LLamada llamada = new LLamada();
-		llamada=admin.agregar("123", "juan", "perez", "1", true, "verdadera", "315887744", "12");
-		System.out.println(llamada.getIdLLamada());
+		llamada=admin.agregar("123", "juan", "perez", "1", true, "1", "315887744", "12");
+		System.out.println(llamada.getIdEmergencia());
 		llamadadao.agregar(llamada);
 		
+		//Pk_Id	Estado 1: Efectiva; 0: no efectiva (ociosa)	Fk_Id_Llamada_Tipo	Numero_Telefonico
+
 			
 		
 

@@ -21,7 +21,7 @@ delta dAdminLlamadaAdicionar {
 			llamada.setEstado(estado);
 			llamada.setCoddomtipollamada(domtipollamada); 
 			llamada.setIdplantatelefonica(plantatelefonica);
-			llamada.setIdLLamada(emergencia);
+			llamada.setIdEmergencia(emergencia);
 			llamada.setPersona(persona);
 			return llamada;
 		}
@@ -30,7 +30,8 @@ delta dAdminLlamadaAdicionar {
 		adds public void agregar(LLamada llamada) {
 			try {
 				conn = dbConnection.getConnection();
-				String query = "INSERT INTO llamadas(Estado,TipoLLamada,NroTelefonico,idEmergencia,idPersona) values (?,?,?,?,?)";
+				
+				String query = "INSERT INTO llamadas(Estado,Fk_Id_Llamada_Tipo,Numero_Telefonico,Fk_Id_emergencia,Fk_Id_cedula) values (?,?,?,?,?)";
 				ps = conn.prepareStatement(query);
 				ps.setBoolean(1, llamada.getEstado());
 				ps.setString(2, llamada.getCoddomtipollamada());

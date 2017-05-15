@@ -54,6 +54,26 @@
 				" />
 			</partition>
 			<partition>
+				<modul delta="dAdminLlamada" when="AdminLlamadaConsultar
+				" />
+				<modul delta="dDaoPersona" when="AdminLlamadaConsultar
+				" />
+				<modul delta="dDaoLlamada" when="AdminLlamadaConsultar
+				" />
+				<modul delta="dAdminLlamadaConsultar" when="AdminLlamadaConsultar
+				" />
+			</partition>
+			<partition>
+				<modul delta="dAdminLlamada" when="AdminLlamadaActualizar
+				" />
+				<modul delta="dDaoPersona" when="AdminLlamadaActualizar
+				" />
+				<modul delta="dDaoLlamada" when="AdminLlamadaActualizar
+				" />
+				<modul delta="dAdminLlamadaActualizar" when="AdminLlamadaActualizar
+				" />
+			</partition>
+			<partition>
 				<modul delta="dConexion" when="Conexion
 				" />
 			</partition>

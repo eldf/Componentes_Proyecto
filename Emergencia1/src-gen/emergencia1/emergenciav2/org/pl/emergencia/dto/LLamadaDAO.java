@@ -19,7 +19,7 @@ public class LLamadaDAO {
 		try {
 			conn = dbConnection.getConnection();
 			String query =
-			"INSERT INTO llamadas(Estado,TipoLLamada,NroTelefonico,idEmergencia,idPersona) values (?,?,?,?,?)";
+			"INSERT INTO llamadas(Estado,Fk_Id_Llamada_Tipo,Numero_Telefonico,Fk_Id_emergencia,Fk_Id_cedula) values (?,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 			ps.setBoolean(1, llamada.getEstado());
 			ps.setString(2, llamada.getCoddomtipollamada());

@@ -6,11 +6,11 @@ delta dAdminLlamadaActualizar {
 		adds public void modificar(String identificacion,
 								String nombre,
 								String apellido,
-								int idLLamada,
+								String idLLamada,
 								Boolean estado,
-								DomTipoLLamada domtipolamada,
-								PlantaTelefonica plantatelefonica,
-								Emergencia emergencia				
+								String domtipollamada,
+								String plantatelefonica,
+								String emergencia					
 		) {
 			
 			Persona persona = new Persona();
@@ -20,21 +20,21 @@ delta dAdminLlamadaActualizar {
 			persona.setApellido(apellido);
 			llamada.setIdLLamada(idLLamada);
 			llamada.setEstado(estado);
-			llamada.setDomtipolamada(domtipolamada); 
-			llamada.setPlantatelefonica(plantatelefonica);
-			llamada.setEmergencia(emergencia);
+			llamada.setCoddomtipollamada(domtipollamada); 
+			llamada.setIdplantatelefonica(plantatelefonica);
+			llamada.setIdEmergencia(emergencia);
 			llamada.setPersona(persona);
 		}
 	}
 	modifies org.pl.emergencia.dto.LLamadaDAO {
 		adds public void modificar(LLamada llamada) {
 			try {
-				conn = Conexion.getConexion();
+				conn = dbConnection.getConnection();
 				String query = "UPDATE llamadas set Estado=?,Fk_Id_Llamada_Tipo=?,Numero_Telefonico=? where Pk_Id=?  ";
 				ps = conn.prepareStatement(query);
-				ps.setString(1, llamada.getEstado());
-				ps.setString(2, llamada.getsetDomtipolamada().id);
-				ps.setString(3, llamada.getPlantatelefonica().idLlamada);
+				ps.setBoolean(1, llamada.getEstado());
+				ps.setString(2, llamada.getCoddomtipollamada());
+				ps.setString(3, llamada.getIdplantatelefonica());
 				ps.setString(4, llamada.getIdLLamada());
 				ps.executeUpdate();
 			}
@@ -55,12 +55,12 @@ delta dAdminLlamadaActualizar {
 	modifies org.pl.emergencia.dto.PersonaDAO {
 		adds public void modificar(Persona persona) {
 			try {
-				conn = Conexion.getConexion();
+				conn = dbConnection.getConnection();
 				String query = "UPDATE personas set nombre=?,apellido=? where  identificacion= values=?";
 				ps = conn.prepareStatement(query);
 				ps.setString(1, persona.getNombre());
-				ps.setString(2, persona.getApellido);
-				ps.setString(3, persona.Identificacion());
+				ps.setString(2, persona.getApellido());
+				ps.setString(3, persona.getIdentificacion());
 				ps.executeUpdate();
 			}
 			catch(Exception e) {

@@ -1,0 +1,34 @@
+delta dModTipoEmergencia {
+	modifies org.pl.emergencias.fop.AdminTipoEmergencia {
+		adds public void modificar(Integer id, String n, String d) {
+			Emergencia c = new Emergencia();
+			c.setId(id);
+			c.setNombre(n);
+			c.setDescripcion(d);
+			emerDAO.modificar(c);
+		}
+	}
+	modifies org.pl.eshopping.dto.EmergenciaDAO {
+		adds public void modificar(Emergencia c) {
+			try {
+				conn = Conexion.getConexion();
+				String query = "UPDATE Emergencia set nombre=?,descripcion=? WHERE id=?";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, c.getNombre());
+				ps.setString(2, c.getDescripcion());
+				ps.setString(3, c.getId().toString());
+				ps.executeUpdate();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					conn.close();
+				}
+				catch(Exception e) { /* ignored */}
+			}
+		}
+	}
+
+}

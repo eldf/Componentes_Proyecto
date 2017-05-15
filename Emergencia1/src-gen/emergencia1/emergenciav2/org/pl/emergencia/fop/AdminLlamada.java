@@ -25,7 +25,7 @@ public class AdminLlamada {
 		llamada.setEstado(estado);
 		llamada.setCoddomtipollamada(domtipollamada);
 		llamada.setIdplantatelefonica(plantatelefonica);
-		llamada.setIdLLamada(emergencia);
+		llamada.setIdEmergencia(emergencia);
 		llamada.setPersona(persona);
 		return llamada;
 	}

@@ -1,0 +1,28 @@
+delta dListarTipoEmergencia {
+	modifies org.pl.emergencias.fop.AdminEmergencia {
+		adds public void listar() {
+			emerDAO.listar();
+		}
+	}
+	modifies org.pl.emergencias.dto.EmergenciaDAO {
+		adds public ResulSet listar() {
+			try {
+				conn = Conexion.getConexion();
+				String query = "Select * from Emergencia";
+				ps = conn.prepareStatement(query);
+				ResulSet re = ps.executeQuery();
+				Return(rs);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					conn.close();
+				}
+				catch(Exception e) { /* ignored */
+				}
+			}
+		}
+	}
+}

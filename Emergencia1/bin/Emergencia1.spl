@@ -15,10 +15,11 @@ SPL Emergencia1 {
 		{dDaoPersona} when (DaoPersona);
 		{dAdminLlamada,dDaoPersona,dDaoLlamada,dAdminLlamadaAdicionar} 
 		 when (AdminLlamadaAdicionar);
-
-		
-		
-		
+		 {dAdminLlamada,dDaoPersona,dDaoLlamada,dAdminLlamadaConsultar} 
+		 when (AdminLlamadaConsultar);
+		 {dAdminLlamada,dDaoPersona,dDaoLlamada,dAdminLlamadaActualizar} 
+		 when (AdminLlamadaActualizar);
+		 
 		{dConexion} when (Conexion);
 		{dConfig} when (Config);
 		
@@ -26,9 +27,12 @@ SPL Emergencia1 {
 
 	Products {
 		// Put product definitions here. 
-		EmergenciaV1 = {AdminLlamada,Llamada,Persona,Conexion,DaoLlamada,DaoPersona};
+	    EmergenciaV1 = {AdminLlamada,Llamada,Persona,Conexion,DaoLlamada,DaoPersona};
 	    EmergenciaV2 = {AdminLlamada,Llamada,Persona,Conexion,DaoLlamada,DaoPersona,AdminLlamadaAdicionar};
-		
+	    EmergenciaV3 = {AdminLlamada,Llamada,Persona,Conexion,DaoLlamada,DaoPersona,AdminLlamadaConsultar};
+	    EmergenciaV4 = {AdminLlamada,Llamada,Persona,Conexion,DaoLlamada,DaoPersona,AdminLlamadaActualizar};
+	    EmergenciaV5 = {AdminLlamada,Llamada,Persona,Conexion,DaoLlamada,DaoPersona,AdminLlamadaAdicionar,AdminLlamadaConsultar,AdminLlamadaActualizar};
+	    
 
 	}
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spls xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../bin/spls.xsd">
+	<spl name="Emergencias">
+		<features>
+			<feature name ="AdminTipoEmergencia" />
+			<feature name ="AddTipoEmergencia" />
+			<feature name ="ModTipoEmergencia" />
+			<feature name ="EliminarTipoEmergencia" />
+			<feature name ="ListarTipoEmergencia" />
+			<feature name ="Emergencia" />
+			<feature name ="DomEmergencia" />
+			<feature name ="DaoEmergencia" />
+			<feature name ="DaoDomEmergencia" />
+			<feature name ="Conexion" />
+			<feature name ="Config" />
+		</features>
+		<configurations>
+		</configurations>
+		<deltas>
+			<partition>
+				<modul delta="dAdminTipoEmergencia" when="AddTipoEmergencia
+				" />
+				<modul delta="dDaoDomEmergencia" when="AddTipoEmergencia
+				" />
+				<modul delta="dDaoEmergencia" when="AddTipoEmergencia
+				" />
+				<modul delta="dAddTipoEmergencia" when="AddTipoEmergencia
+				" />
+			</partition>
+			<partition>
+				<modul delta="dAdminTipoEmergencia" when="ModTipoEmergencia
+				" />
+				<modul delta="dDaoDomEmergencia" when="ModTipoEmergencia
+				" />
+				<modul delta="dDaoEmergencia" when="ModTipoEmergencia
+				" />
+				<modul delta="dModTipoEmergencia" when="ModTipoEmergencia
+				" />
+			</partition>
+			<partition>
+				<modul delta="dAdminTipoEmergencia" when="EliminarTipoEmergencia
+				" />
+				<modul delta="dDaoDomEmergencia" when="EliminarTipoEmergencia
+				" />
+				<modul delta="dDaoEmergencia" when="EliminarTipoEmergencia
+				" />
+				<modul delta="dEliminarTipoEmergencia" when="EliminarTipoEmergencia
+				" />
+			</partition>
+			<partition>
+				<modul delta="dAdminTipoEmergencia" when="ListarTipoEmergencia
+				" />
+				<modul delta="dDaoDomEmergencia" when="ListarTipoEmergencia
+				" />
+				<modul delta="dDaoEmergencia" when="ListarTipoEmergencia
+				" />
+				<modul delta="dListarTipoEmergencia" when="ListarTipoEmergencia
+				" />
+			</partition>
+			<partition>
+				<modul delta="dAdminTipoEmergencia" when="AdminTipoEmergencia
+				" />
+			</partition>
+			<partition>
+				<modul delta="dDomEmergencia" when="DomEmergencia
+				" />
+			</partition>
+			<partition>
+				<modul delta="dDaoDomEmergencia" when="DaoDomEmergencia
+				" />
+			</partition>
+			<partition>
+				<modul delta="dConexion" when="Conexion
+				" />
+			</partition>
+			<partition>
+				<modul delta="dConfig" when="Config
+				" />
+			</partition>
+		</deltas>
+	</spl>
+</spls>

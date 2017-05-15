@@ -1,0 +1,25 @@
+delta dAddTipoEmergencia {
+	modifies org.pl.emergencias.fop.AdminTipoEmergencia{
+		adds public void agregar(String n, String d) {
+			Emergencia c = new Emergencia();
+			c.setNombre(n);
+			c.setDescripcion(d);
+			emerDao.agregar(c);
+		}
+	}
+	modifies org.pl.emergencias.dto.EmergenciaDAO{
+		adds public void agregar(Emergencia c){
+			try { conn = Conexion.getConexion();
+				String query = "INSERT INTO Emergencia (nombre,descripcion) values (?, ?)";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, c.getNombre()); 
+				ps.setString(2,c.getDescripcion());
+				ps.executeUpdate();
+			}
+			catch(Exception e){ e.printStackTrace();}
+			finally{
+				try { conn.close(); } catch (Exception e) { /* ignored*/ }
+			}
+		}
+	}
+}

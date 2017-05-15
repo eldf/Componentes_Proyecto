@@ -1,26 +1,29 @@
 delta dAdminLlamadaConsultar {
 	modifies org.pl.emergencia.fop.AdminLlamada {
 
-		adds public void consultar(
-								PlantaTelefonica plantatelefonica
+		adds public LLamada consultar(
+								String NroTelefonico
 												
 		) {
 			Persona persona = new Persona();
 			LLamada llamada = new LLamada();
-		    llamada.setPlantatelefonica(plantatelefonica);
+		    llamada.setIdplantatelefonica(NroTelefonico);
+		    return llamada;
 		}
 	}
 	modifies org.pl.emergencia.dto.LLamadaDAO {
-		adds public LLamada consultar(LLamada llamada, Persona persona ) {
+		adds public LLamada consultar(LLamada llamada ) {
+			Persona persona = new Persona();
 			try {
-				conn = Conexion.getConexion();
-				String query = "SELECT Estado,TipoLLamada,NroTelefonico,idEmergencia,idPersona from llamada where Pk_Id=?";
-				ps = conn.prepareStatement(query);
-				ps.setInt(1, llamada.getIdLLamada());
-				rs = ps.executeQuery();
-				if (rs.next()) {	
+				conn = dbConnection.getConnection();
+				st=conn.createStatement();
+				String query = "SELECT Estado,Fk_Id_Llamada_Tipo,Numero_Telefonico,Fk_Id_emergencia,Fk_Id_cedula from llamadas where Numero_Telefonico= '"+llamada.getIdplantatelefonica()+"'";
+				//ps = conn.prepareStatement(query);
+				//st.setString(1, llamada.getIdLLamada());
+				rs = st.executeQuery(query);
+				while (rs.next()) {	
 			          llamada.setEstado(rs.getBoolean("Estado")); 
-			          persona.setIdentificacion(rs.getString("idPersona"));
+			          persona.setIdentificacion(rs.getString("Fk_Id_cedula"));
 			          llamada.setPersona(persona);
 				}
 				
@@ -44,7 +47,7 @@ delta dAdminLlamadaConsultar {
 	modifies org.pl.emergencia.dto.PersonaDAO {
 		adds public Persona consultar(Persona persona) {
 			try {
-				conn = Conexion.getConexion();
+				conn = dbConnection.getConnection();
 				String query = "SELECT nombre,apellido FROM persona WHERE identificacion=?";
 				 ps = conn.prepareStatement(query);
 				 ps.setString(1, persona.getIdentificacion());

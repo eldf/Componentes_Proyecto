@@ -1,0 +1,15 @@
+delta dAdminTipoEmergencia {
+		adds {
+			package org.pl.emergencias.fop;
+
+			import org.pl.emergencias.dto.Emergencia;
+			import org.pl.emergencias.dto.DaoEmergencia;
+			import org.pl.emergencias.dto.DaoDomEmergencia;
+
+			public class AdminTipoEmergencia {
+				DaoEmergencia emerDao = new DaoEmergencia();
+				DaoDomEmergencia emerDomDao = new DaoDomEmergencia();
+				Emergencia emer = new Emergencia();
+			}
+		}	
+}

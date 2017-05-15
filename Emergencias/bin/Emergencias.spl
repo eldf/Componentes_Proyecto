@@ -1,0 +1,27 @@
+SPL Emergencias {
+
+	Features = {AdminTipoEmergencia,AddTipoEmergencia,ModTipoEmergencia,EliminarTipoEmergencia,ListarTipoEmergencia,Emergencia,DomEmergencia,DaoEmergencia,DaoDomEmergencia,Conexion,Config}
+
+	Deltas = {dAdminTipoEmergencia,dAddTipoEmergencia,dModTipoEmergencia,dEliminarTipoEmergencia,dListarTipoEmergencia,dEmergencia,dDomEmergencia,dDaoEmergencia,dDaoDomEmergencia,dConexion,dConfig}
+
+	Constraints {
+		// Put boolean expression representation of the feature model here. 
+	}
+
+	Partitions {
+		// Put mapping between deltas and feature configurations here. 
+		{dAdminTipoEmergencia,dDaoDomEmergencia,dDaoEmergencia,dAddTipoEmergencia} when (AddTipoEmergencia);
+		{dAdminTipoEmergencia,dDaoDomEmergencia,dDaoEmergencia,dModTipoEmergencia} when (ModTipoEmergencia);
+		{dAdminTipoEmergencia,dDaoDomEmergencia,dDaoEmergencia,dEliminarTipoEmergencia} when (EliminarTipoEmergencia);
+		{dAdminTipoEmergencia,dDaoDomEmergencia,dDaoEmergencia,dListarTipoEmergencia} when (ListarTipoEmergencia);		
+		{dAdminTipoEmergencia} when (AdminTipoEmergencia);
+		{dDomEmergencia} when (DomEmergencia);
+		{dDaoDomEmergencia} when (DaoDomEmergencia);
+		{dConexion} when (Conexion);
+		{dConfig} when (Config);		
+	}
+
+	Products {
+		// Put product definitions here. 
+	}
+}
